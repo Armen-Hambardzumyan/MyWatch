@@ -60,16 +60,22 @@ const ProductDetails: React.FC = () => {
         <Text size="4" weight="medium" mb="6">${product.price.toFixed(2)}</Text>
 
         <Text mb="1" style={{ color: '#666', lineHeight: '1.6' }}>Case size:</Text>
-        <Select value={selectedSize} onValueChange={setSelectedSize}>
-          <SelectTrigger aria-label="Case Size" style={{ padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }}>
+        <Select
+          value={selectedSize}
+          onValueChange={setSelectedSize}
+        >
+          <SelectTrigger
+            aria-label="Case Size"
+            style={{ padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }}
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+          >
             <SelectValue placeholder="Select Case Size" />
           </SelectTrigger>
           <SelectContent>
-            <SelectContent>
-              {product.sizes.map((size) => (
-                <SelectItem value={size} key={size}>{size}</SelectItem>
-              ))}
-            </SelectContent>
+            {product.sizes.map((size) => (
+              <SelectItem value={size} key={size}>{size}</SelectItem>
+            ))}
           </SelectContent>
         </Select>
 
