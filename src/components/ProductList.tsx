@@ -59,16 +59,23 @@ const ProductList: React.FC = () => {
               <Text size="4" weight="medium" color="gray">${product.price.toFixed(2)}</Text>
 
               <Text mb="1" style={{ color: '#666', lineHeight: '1.6' }}>Case size:</Text>
-              <Select value={selectedSizes[product.id] || product.sizes[0]} onValueChange={(size) => handleSizeChange(product.id, size)}>
-                <SelectTrigger aria-label="Case Size" style={{ padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }}>
-                  <SelectValue placeholder="Select Case Size" />
-                </SelectTrigger>
-                <SelectContent>
-                  {product.sizes.map((size) => (
-                    <SelectItem value={size} key={size}>{size}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+
+              <div onClick={(e) => e.stopPropagation()}>
+                <Select
+                  value={selectedSizes[product.id] || product.sizes[0]}
+                  onValueChange={(size) => handleSizeChange(product.id, size)}
+                >
+                  <SelectTrigger aria-label="Case Size" style={{ padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }}>
+                    <SelectValue placeholder="Select Case Size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {product.sizes.map((size) => (
+                      <SelectItem value={size} key={size}>{size}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
 
               <Button
                 variant={isInCart(product.id, selectedSizes[product.id]) ? "surface" : "soft"}
